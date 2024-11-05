@@ -13,7 +13,7 @@ export default function PriceTag({ price }: PriceTagProps) {
 const styles = StyleSheet.create({
   price: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
     color: PRIMARY_COLOR,
   },
 });

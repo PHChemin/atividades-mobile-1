@@ -19,15 +19,16 @@ import PriceTag from "../checkout/PriceTag";
 import Badge from "../checkout/Badge";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Feather from "@expo/vector-icons/Feather";
+import CountButton from "../checkout/CountButton";
 
 type CardProps = {
   title: string;
-  children: ReactNode;
+  productOption?: string;
   price: number;
   icon?: ReactNode;
 };
 
-export default function Card({ title, children, price, icon }: CardProps) {
+export default function Card({ title, productOption, price, icon }: CardProps) {
   return (
     <View style={styles.container}>
       <View style={styles.flexRow}>
@@ -52,11 +53,23 @@ export default function Card({ title, children, price, icon }: CardProps) {
           source={{
             uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9qbVwyaHt66GKMDfgWeNqDGw_IS7pjjWL0Q&s",
           }}
+          width={100}
+          height={100}
         />
+
         <View style={styles.productDescription}>
-          <Text style={styles.title}>{title}</Text>
-          {children}
-          <PriceTag price={price}></PriceTag>
+          <Text style={styles.productTitle}>{title}</Text>
+          {productOption && (
+            <View style={styles.containerOptions}>
+              <Text>{productOption}</Text>
+              <Feather name="arrow-right" size={16} color="black" />
+            </View>
+          )}
+
+          <View style={styles.flexBetween}>
+            <PriceTag price={price}></PriceTag>
+            <CountButton></CountButton>
+          </View>
         </View>
       </View>
 
@@ -99,15 +112,26 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
   },
+  productTitle: {
+    fontWeight: "500",
+    fontSize: 16,
+  },
   flexRow: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
   },
+  flexBetween: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   image: {
-    width: 60,
-    height: 50,
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    borderRadius: DEFAULT_RADIUS / 2,
   },
   productDescription: {
     flex: 1,
@@ -132,5 +156,16 @@ const styles = StyleSheet.create({
   itemFooter: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  containerOptions: {
+    maxWidth: 100,
+    padding: DEFAULT_PADDING / 3,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "grey",
+    backgroundColor: "lightgrey",
+    borderRadius: DEFAULT_RADIUS / 2,
   },
 });
