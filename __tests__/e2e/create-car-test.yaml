@@ -1,0 +1,42 @@
+appId: host.exp.exponent
+---
+- openLink: exp://127.0.0.1:8081
+
+- tapOn: "Digite seu email"
+
+- inputText: "gearhead@example.com"
+
+- tapOn: "Sua senha"
+
+- inputText: "password123"
+
+- hideKeyboard
+
+- tapOn: "Entrar"
+
+- tapOn: "Novo carro"
+
+- tapOn: "Digite a marca"
+
+- inputText: "Honda"
+
+- tapOn: "Digite o modelo"
+
+- inputText: "Civic"
+
+- tapOn: "Digite a potência"
+
+- inputText: "100"
+
+- tapOn: "Criar"
+
+- tapOn: "OK"
+
+- assertVisible: "FuscaRed72"
+
+- assertVisible: "Honda Civic"
+
+- tapOn:
+    id: "delete-icon"
+
+- tapOn: "SIM"
